@@ -4,7 +4,9 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*',
+}));
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -16,3 +18,4 @@ app.use( "/api/users" ,require("./routes/user.routes"));
 // Start server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT,'0.0.0.0',() => console.log(`Server running on port ${PORT}`));
+z
