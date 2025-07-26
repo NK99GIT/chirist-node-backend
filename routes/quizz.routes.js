@@ -17,7 +17,7 @@ router.post("/api/questions/update", QuizController.updateQuestion);
 router.post("/api/questions/delete", QuizController.deleteQuestion);
 router.post("/api/questions/all", QuizController.getAllQuestions);
 router.post("/api/save-result", QuizController.saveResult);
-router.get("/api/all-result", QuizController.allResult);
+router.post("/api/all-result", QuizController.allResult);
 router.get("/api/dashboard/stats", QuizController.getDashboardStats);
 router.get("/api/dashboard/weekly-attempts", QuizController.weeklyAttempts);
 router.get("/api/dashboard/average-score", QuizController.averageScore);

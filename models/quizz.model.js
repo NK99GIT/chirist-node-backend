@@ -38,10 +38,17 @@ exports.getQuizPlay = async (req) => {
     .orderBy("quiz_play.id", "desc");
 };
 exports.getQuizAllPlay = async (req) => {
-  return await knex("quiz_play") 
-    .select("*")
-    .orderBy("quiz_play.id", "desc");
+  console.log(req.body.limit);
+
+  const query = knex("quiz_play").select("*").orderBy("created_at", "desc");
+
+    if (req.body.limit != undefined) {
+    query.limit(req.body.limit);
+  }
+  return await query;
 };
+
+
 exports.getQuizPlayByID = async (req) => {
   console.log(req.body)
   return await knex("quiz_play") 
@@ -84,10 +91,22 @@ exports.getAllQuestionsQuizID = async (quizId) => {
     .select("*").orderBy("id", "desc");
 };
 
-exports.allResult = async () => { 
-  return await knex("results")
-    .select("*").orderBy("score", "desc");
+exports.allResult = async (data) => {
+  console.log(data);
+  console.log(data?.limit, data?.offset);
+
+  const query = knex("results").select("*").orderBy("score", "desc");
+
+  if (data?.limit != undefined) {
+    query.limit(data.limit);
+  }
+
+  if (data?.offset != undefined) {
+    query.offset(data.offset);
+  }
+  return await query;
 };
+
 
 exports.saveResult = async (data) => {
    return await knex("results").insert(data);

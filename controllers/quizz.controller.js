@@ -59,6 +59,7 @@ exports.getQuizPlay = async (req, res) => {
   }
 };
 exports.getQuizAllPlay = async (req, res) => {
+  console.log(2,req.body) 
   try {
     const data = await QuizModel.getQuizAllPlay(req);
     res.status(200).json(data);
@@ -182,8 +183,10 @@ exports.getAllQuestionsBYQuizID = async (req, res) => {
 };
 
 exports.allResult = async (req, res) => {
+  const limit = req.body?.data
+
   try {
-    const data = await QuizModel.allResult();
+    const data = await QuizModel.allResult(limit);
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
