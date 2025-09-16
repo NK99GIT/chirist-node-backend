@@ -9,6 +9,8 @@ const knex = require("knex")({
   
 });
 
+console.log(process.env)
+
 // Test connection
 knex.raw('SELECT 1')
   .then(() => {
